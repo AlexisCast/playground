@@ -1,0 +1,23 @@
+.container__card{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 10px;
+    width: 360px;
+}
+
+.card__details{
+    width: 100%;
+    padding: 10px;
+}
+
+h1, h2, h3 {
+    margin: 0px;
+}
