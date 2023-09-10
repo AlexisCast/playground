@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import styles from "./Drawer.module.css";
@@ -11,6 +12,16 @@ const DrawerOverlay = ({ children }) => {
 };
 
 const Drawer = ({ onClose, children }) => {
+	useEffect(() => {
+		// Disable vertical scrolling when the Drawer is open
+		document.body.style.overflowY = "hidden";
+
+		// Re-enable vertical scrolling when the Drawer is closed
+		return () => {
+			document.body.style.overflowY = "auto";
+		};
+	}, []);
+
 	return (
 		<>
 			{ReactDOM.createPortal(

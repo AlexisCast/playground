@@ -637,4 +637,19 @@ const mockData = [
 	},
 ];
 
+export const lorem =
+	"Sint id enim sint sunt velit aliquip commodo et labore consequat irure ut ipsum elit. Ipsum ex eiusmod reprehenderit quis cillum incididunt Lorem ullamco sit. Fugiat incididunt do officia exercitation adipisicing nisi reprehenderit proident ad enim anim aliquip exercitation ea. Aliquip sint cupidatat fugiat ipsum elit veniam laboris ea laboris qui enim. Excepteur sint incididunt occaecat aute velit reprehenderit et elit adipisicing sunt cillum nisi.";
+
+	export const lorem10 =
+	lorem +
+	lorem +
+	lorem +
+	lorem +
+	lorem +
+	lorem +
+	lorem +
+	lorem +
+	lorem +
+	lorem;
+
 export default mockData;
