@@ -8,6 +8,7 @@ const Card = ({ character }) => {
 			</div>
 			<div className={styles.card__details}>
 				<h2>{character.name}</h2>
+				<h3>Status: {character.id}</h3>
 				<h3>Status: {character.Status}</h3>
 				<p>Species: {character.species}</p>
 			</div>

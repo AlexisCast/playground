@@ -1,42 +1,77 @@
 import { useState, useEffect } from "react";
 
-import CardList from "./components/CardList";
-import styles from "./App.module.css";
+import {
+	RouterProvider,
+	createBrowserRouter,
+	useParams,
+} from "react-router-dom";
 
-function App() {
-	const [count, setCount] = useState(0);
-	const [characters, setCharacters] = useState([]);
+import Root from "./components/Root";
+import Characters from "./pages/Characters";
+import FillForm from './pages/FillForm'
 
+
+const Home = () => {
+	return <div>Home Content</div>;
+};
+
+const Other = () => {
+	return <div>Other Componentsss</div>;
+};
+
+const CharacterProfile = () => {
+	const [profile, setProfile] = useState(null);
+
+	let { characterId } = useParams();
 	useEffect(() => {
 		console.log("test");
-		getRickMortyData();
+		getRickMortyProfile();
 	}, []);
 
-	useEffect(() => {
-		if (characters.length <= 0) {
-			return;
+	const getRickMortyProfile = async () => {
+		try {
+			const response = await fetch(
+				`https://rickandmortyapi.com/api/character/${characterId}`
+			);
+			if (!response.ok) {
+        const errorMessage = await response.json();
+				throw new Error(errorMessage.error);
+			}
+			const data = await response.json();
+			setProfile(data);
+		} catch (error) {
+			console.log(error);
+			setProfile({ name: error });
 		}
-		console.log("test,,,", characters);
-	}, [characters]);
-
-	const getRickMortyData = async () => {
-		const response = await fetch(
-			"https://rickandmortyapi.com/api/character"
-		);
-		const data = await response.json();
-		setCharacters(data.results);
 	};
 
-	return (
-		<div className={styles.container}>
-			<div className={styles.container__button}>
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-			</div>
-			{characters.length && <CardList characters={characters} />}
-		</div>
-	);
+	console.log("id", characterId);
+	return <div>Name: {profile ? `${profile.name}` : "Loading..."}</div>;
+};
+
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Root />,
+		errorElement: <div>Error!</div>,
+		children: [
+			{ index: true, element: <Home /> },
+			{
+				path: "characters",
+				element: <Characters />,
+			},
+			{
+				path: "characters/:characterId",
+				element: <CharacterProfile />,
+			},
+			{ path: "fillform", element: <FillForm /> },
+			{ path: "other", element: <Other /> },
+		],
+	},
+]);
+
+function App() {
+	return <RouterProvider router={router} />;
 }
 
 export default App;
