@@ -55,6 +55,18 @@ const Root = () => {
 								Other
 							</NavLink>
 						</li>
+						<li>
+							<NavLink
+								to="/drawer"
+								className={({ isActive }) =>
+									isActive
+										? "color1"
+										: "color2"
+								}
+							>
+								Drawer
+							</NavLink>
+						</li>
 					</ul>
 				</nav>
 			</header>

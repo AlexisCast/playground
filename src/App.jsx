@@ -9,6 +9,7 @@ import {
 import Root from "./components/Root";
 import Characters from "./pages/Characters";
 import FillForm from './pages/FillForm'
+import DrawerPage from "./pages/DrawerPage";
 
 
 const Home = () => {
@@ -66,6 +67,7 @@ const router = createBrowserRouter([
 			},
 			{ path: "fillform", element: <FillForm /> },
 			{ path: "other", element: <Other /> },
+			{ path: "drawer", element: <DrawerPage /> },
 		],
 	},
 ]);
